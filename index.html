@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+
+    <head>
+        <title>PASAPALABRA HTML by di3boss</title>
+
+        <meta charset="utf-8"/>
+        <meta name="autor" content="Diego F. Bermúdez">
+        <meta name="keywords" content="pasapalabra,html,css,practice,project,ISDI,coders">
+        
+        <link type ="text/css" href="./style.css" rel="stylesheet" >
+        <link href="https://fonts.googleapis.com/css2?family=Rubik+80s+Fade&display=swap" rel="stylesheet">
+
+        <script type="text/javascript" src="./main.js" defer></script>
+
+    </head>
+
+    <body>
+        
+        <header>
+            <h1 class="title">Cyber palabra</h1>
+        </header>
+        <main class="ui-container">        
+            
+            <div id="game-events"></div>
+            <div id="game-ranking"></div>
+
+            <div id="game-scenario" class="game-scenario">
+
+                <img class="screen-frame" src="./media/screen-frame.png">
+
+                <div class="player-status" id="player-status"></div>
+                <div id="letter-donut" class="letter-donut"> </div>
+                <div id="questions" class="questions"></div>                
+                <div class="inputs" id="inputs"></div>
+                <div class="screen-noise"></div>
+
+                <img class="screen-bground" src="./media/screen-bground.png">
+
+            </div>
+
+        </main>
+
+        <h1 class="terminal-locked" id="terminal-locked">TERMINAL LOCKED</h1>
+
+        <section class="explanation" id="explanation">
+        
+            <div id="pukka-name"></div>
+
+            <h2> Un poco de role-play...</h2> 
+    
+            <form>
+        
+            <p>Te haces llamar <input class="player-name" id="player-name" type="text" value="V"> . Eres un intento de cyberpunk que, la verdad, da más pena que respeto. Un fixer te ha encargado extraer información de un terminal 
+                de Arasaka y, para ello, te ha pasado un pincho con los datos de acceso al sistema... </p>
+
+            <p>Ah, ¿que no tienes el pincho? Con la cogorza que pillaste ayer no es de extrañar. Tendrás que sortear el hielo de Arasaka introduciendo las
+                respuestas correctas ante cada pregunta de seguridad. Pero ¡ten cuidado! Hay netrunners que han acabado en el matasanos por enfrentarse a  
+                contramedidas como estas. Vigila tu medidor de salud, porque irá bajando progresivamente, mientra mantengas
+                la conexión con el terminal. </p>
+
+            <p>Si te desconectas, la misión fracasará. Si tu salud se agota, morirás... Pero, cuanto más hielo rompas acertando preguntas, 
+                más datos recabarás para el fixer y más eddies ganarás. Si tienes dudas, introduce <b>pass</b> y déjalo para el final... A ver si consigues sortear 
+                el hielo sin morir y sin fallar ni una puñetera pregunta de seguridad. Si lo consigues, 
+                el plus que te lleves nos puede catapulatar directamente a las grandes ligas de Night City. ¡Ya lo verás! </p>
+
+            <button class="game-start" id="game-start"> Conectar al terminal</button>
+            
+            </form>
+
+        </section>
+
+    </body>
+
+</html>

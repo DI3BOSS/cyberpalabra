@@ -1,0 +1,504 @@
+*{
+    box-sizing: border-box;
+    --donut-diameter: 440px;
+    cursor: crosshair;
+}
+
+@font-face {
+    font-family: 'CyberPunk';
+    src: url(./Cyberpunk.ttf) format('truetype')
+}
+
+@font-face {
+    font-family: 'Cyberway Riders';
+    src: url(https://get.fontspace.co/webfont/lg97d/OGNhMDVjZTA2M2VmNDZhNTk4Y2IzZTBiZGUxOTdlZDkub3Rm/cyberway-riders.woff) format('woff')
+}
+
+@font-face {
+    font-family: 'Blender Pro';
+    src: url(https://www.cyberpunk.net/fonts/BlenderPro-Book.woff2) format('woff2')
+}
+
+
+@font-face {
+    font-family: 'Computer Pixel';
+    src: url(https://get.fontspace.co/webfont/mnL2/ZDg0NGY3OTY0YjI3NDg1ZDg0MGI4YzEwOGNjMmYwN2MudHRm/computer-pixel-7.woff) format('woff')
+}
+
+html {
+    font-family: 'Cyberway Riders', monospace;
+}
+
+body {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(248, 243, 43);
+    background-image: url(./media/netrunner-lair-bground.jpg);
+    background-size: cover;
+    background-repeat: repeat;
+}
+
+
+.inputs {
+    display: grid;
+    z-index: 30;
+    position: fixed;
+    top: 493px;
+    left: 983px;
+    rotate: 1.2deg;
+}
+
+.answer-input {
+    font-family: 'Blender Pro';
+    font-size: 18px;
+    width: 307px;
+    line-height: 32px;
+    cursor: text;
+    border-right: 4px solid rgba(141, 2, 9, 0.85);
+    border-bottom: 4px solid rgba(141, 2, 9, 0.85);
+    opacity: 60%;
+    margin-top: 10px;
+    transition: all 100ms linear 100ms;
+    text-align: center;
+}
+
+.answer-input:hover {
+    font-family: 'Blender Pro';
+    font-size: 18px;
+    width: 307px;
+    border-right: 4px solid rgba(141, 2, 9, 0.85);
+    border-bottom: 4px solid rgba(141, 2, 9, 0.85);
+    opacity: 90%;
+}
+
+button {
+    margin-top: 15px;
+    display: inline-block;
+    color: rgba(240, 248, 255, 0.8);
+    text-align: center;
+    width: 100%;
+    font-family: 'Blender Pro';
+    cursor: pointer;
+    font-size: 20px;
+    border: 0;
+    line-height: 30px;
+    background-color: rgba(141, 2, 9, 0.7);
+    opacity: 80%;
+    transition: all 100ms linear 100ms;
+}
+
+button:hover {
+    opacity: 100%;
+    font-size: 22px;
+}
+
+.game-scenario {
+    display: grid;
+    place-items: center;
+    width: var(--donut-diameter);
+    height: var(--donut-diameter);
+}
+
+.screen-frame {
+    transform:rotate(1.2deg);
+    position: fixed;
+    height: 700px;
+    width: 1415px;
+    top: 25px;
+    left: -40px;
+    z-index: 10;
+}
+
+.screen-noise {
+    transform: rotate(1.2deg);
+    position: fixed;
+    top: 85px;
+    left: 165px;
+    height: 585px;
+    width: 1165px;
+    border-radius: 30px;
+    overflow: hidden;
+    mix-blend-mode: difference;
+    z-index: 25;
+}
+
+.screen-noise::before {
+    content: "";
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(96, 49, 49, 0.3) 0.7%,
+      transparent 1%
+    );
+    animation: fudge 3s ease-in-out alternate infinite;
+}
+  
+@keyframes fudge {
+    from {
+      transform: translate(0px, 0px);
+    }
+    to {
+      transform: translate(0px, 2%);
+    }
+}
+
+.screen-bground {
+    transform: rotate(1.2deg);
+    position: fixed;
+    top: 85px;
+    left: 165px;
+    height: 579px;
+    width: 1165px;
+    border-radius: 10px;
+    opacity: 85%;
+}
+
+.letter-donut span{
+    position: fixed;
+    height: 40px;
+    color: white;
+    font-size: 35px;
+    width: 60px;
+    text-align: center;
+    padding: 0.8rem 2rem 3rem 1rem;
+    background-color:  rgba(11, 10, 11, 0.90);
+    border-radius: 50%;
+    top: 340px;
+    left: 660px;
+    transform: rotate(1.2deg);
+    z-index: 20;
+}
+
+.letter-donut-active {
+    color: white;
+    background-color: rgba(121, 0, 7, 0.8) !important;
+}
+
+.letter-donut-hit {
+    color: rgb(36, 132, 53) !important;
+    background-color:  rgba(11, 10, 11, 0.90);
+}
+
+.letter-donut-avoided {
+    color: rgb(36, 89, 132) !important;
+    background-color:  rgba(11, 10, 11, 0.90);
+}
+
+.letter-donut-failed {
+    color: rgb(132, 36, 49) !important;
+    background-color:  rgba(11, 10, 11, 0.90);
+}
+
+.terminal-locked {
+    display: block;
+    position: absolute;
+    font-size: 50px;
+    top: 265px;
+    left: -555px;
+    color: rgba(240, 248, 255, 0.6);
+    rotate: 1.2deg;
+    z-index: 25;
+    left: 870px;
+    top: 355px;
+    padding: 0px 12px 10px 10px;
+    margin: 0px 0 10px 0;
+    font-family: 'Blender Pro';
+}
+
+
+.explanation {
+    display: block;
+    position: absolute;
+    text-align: justify;
+    color: rgba(240, 248, 255, 0.8);
+    background-color: rgba(121, 0, 7, 0.8);
+    width: 310px;
+    padding: 0px 12px 10px 10px;
+    margin: 0px 0 10px 0;
+    font-family: 'Blender Pro';
+    text-indent: 10px;
+    border-top: 15px solid  transparent;
+    border-right: 15px solid rgba(7, 7, 7, 0.95);
+    border-bottom: 15px solid rgba(7, 7, 7, 0.95);
+    border-left: 15px solid transparent;
+    z-index:100;
+    left: 1405px;
+    top: 25px;
+}
+
+.explanation button {
+    margin-top: 10px;
+    display: block;
+    text-align: center;
+    width: 100%;
+    color: rgba(240, 248, 255, 0.8);
+    font-family: 'Blender Pro';
+    font-size: 16;
+    border: 0;
+    background-color: rgba(0, 0, 0, 0.95);
+}
+
+.pukka-name {
+    display: block;
+    position: absolute;
+    text-align: justify;
+    color: rgba(240, 248, 255, 0.8);
+    background-color: rgba(7, 7, 7, 0.95);
+    width: 210px;
+    padding: 5px 5px 10px 15px;
+    margin: 0px 0 10px 0;
+    font-family: 'Blender Pro';
+    text-indent: 10px;
+    border-left: 15px solid rgba(121, 0, 7, 0.8);
+    border-top: 15px solid  rgba(121, 0, 7, 0.8);
+    border-right: 15px solid transparent;
+    z-index:200;
+    right: 115px;
+    top: 90px;
+}
+
+.player-name {
+    font-family: 'Blender Pro';
+    font-size: 16px;
+    color: rgba(240, 248, 255, 0.8);
+    width: 80px;
+    cursor: text;
+    border: none;
+    border-bottom: 4px solid rgba(0, 0, 0, 0.95);
+    border-right: 4px solid rgba(0, 0, 0, 0.95);
+    border-top: 4px solid  transparent;
+    border-left: 4px solid  transparent;
+    background-color: transparent;
+    transition: all 100ms linear 100ms;
+    text-align: center;
+    height: 22px;
+}
+
+.player-name:hover {
+    font-family: 'Blender Pro';
+    background-color:  rgba(0, 0, 0, 0.95);
+}
+
+.pukka-player-name {
+    font-family: 'Blender Pro';
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.8);
+    width: 80px;
+    cursor: text;
+    border: none;
+    border-bottom: 4px solid rgba(0, 0, 0, 0.95);
+    border-right: 4px solid rgba(0, 0, 0, 0.95);
+    border-top: 4px solid  transparent;
+    border-left: 4px solid  transparent;
+    background-color:  rgba(248, 243, 43 ,0.60);
+    transition: all 100ms linear 100ms;
+    text-align: center;
+    height: 22px;
+}
+
+.pukka-player-name:hover {
+    font-family: 'Blender Pro';
+    color: rgba(240, 248, 255, 0.8);
+    background-color:  rgba(0, 0, 0, 0.95);
+}
+
+header {
+    font-family: 'CyberPunk', monospace;
+    color: rgba(240, 248, 255, 0.8);
+    width: 100%;
+    font-size: 40px;
+    position: fixed;
+    padding: 20px;
+    bottom: -15px;
+    left: 360px;
+}
+
+div .questions-zone {
+    color: rgba(240, 248, 255, 1);
+    background-color:  rgba(11, 10, 11, 0.95);
+    font-size: 29px;
+    font-family: 'Blender Pro';
+    text-align: left;
+    position: fixed;
+    rotate: 1.2deg;
+    width: 310px;
+    height: 350px;
+    opacity: 80%;
+    top: 135px;
+    left: 984px;
+    padding: 0 10px 20px 20px;
+    border-top: 3px solid  transparent;
+    border-right: 4px solid rgb(141, 2, 9);
+    border-bottom: 4px solid rgb(141, 2, 9);
+    border-left: 3px solid transparent;
+    z-index: 20;
+}
+
+div .invade-terminal {
+    color: rgba(240, 248, 255, 1);
+    background-color:  rgba(11, 10, 11, 0.60);
+    font-size: 21px;
+    font-family: 'Blender Pro';
+    text-align: justify;
+    line-height: 19px;
+    position: fixed;
+    rotate: 1.2deg;
+    width: 310px;
+    height: 450px;
+    opacity: 80%;
+    top: 160px;
+    left: 984px;
+    padding: 0 20px 20px 20px;
+    border-top: 3px solid  transparent;
+    border-right: 4px solid rgb(141, 2, 9);
+    border-bottom: 4px solid rgb(141, 2, 9);
+    border-left: 3px solid transparent;
+    z-index: 35;
+}
+
+div .daemon-terminal {
+   font-family: 'Computer Pixel';
+   font-size: 18px;
+   color: rgba(152, 10, 17, 0.85);
+}
+
+.v-thumbnail {
+    position: fixed;
+    transform: perspective(700px) scaleX(-1) rotateY(20deg);
+    rotate: 1.2deg;
+    height: 380px;
+    top: 205px;
+    right: -180px;
+    mix-blend-mode:lighten;
+    margin-top: 15px;
+    border-top: 3px solid  rgba(141, 2, 9, 0.85);
+    border-right: 4px solid transparent;
+    border-bottom: 4px solid rgba(141, 2, 9, 0.85);
+    border-left: 3px solid transparent;
+    opacity: 70%;
+}
+
+p.player-hub-top{
+    font-family: 'Blender Pro';
+    position: fixed;
+    display: inline-block;
+    font-size: 30px;
+    text-align: center;
+    padding-left: 30px;
+    padding-right: 30px;
+    width: 430px;
+    top: 163px;
+    right: -5px;
+    rotate: -4.4deg;
+    color: rgba(240, 248, 255, 0.95);
+    text-shadow: rgba(70, 2, 2, 0.59) 3px 0 3px;
+    background-color: rgba(141, 2, 9, 0.85);
+    opacity: 70%;
+    transform: perspective(2000px) scaleX(1) rotateY(45deg) skewX(-10px);
+}
+
+p.player-hub-bottom{
+    font-family: 'Blender Pro';
+    position: fixed;
+    display: inline-block;
+    font-size: 42px;
+    text-align: center;
+    padding-left: 30px;
+    padding-right: 30px;
+    width: 430px;
+    top: 501px;
+    right: -5px;
+    rotate: 6deg;
+    color: rgba(240, 248, 255, 0.95);
+    text-shadow: rgba(70, 2, 2, 0.59) 3px 0 3px;
+    background-color: rgba(141, 2, 9, 0.85);
+    opacity: 70%;
+    transform: perspective(2000px) scaleX(1) rotateY(-45deg) skewX(-10px);
+}
+
+.player-hub-icon {
+    font-size: 30px;
+}
+
+.end-note {
+    display: inline;
+    position: fixed;
+    align-self: center;
+    text-align: center;
+    color: rgba(240, 248, 255, 0.8);
+    background: linear-gradient(45deg, rgba(11, 10, 11, 0.9) 30%, rgba(11, 10, 11, 0.5) 90%);
+    width: 800px;
+    height: 480px;
+    padding: 15px;
+    font-family: 'Blender Pro';
+    font-size: 26px;
+    border-top: 5px solid  transparent;
+    border-right: 5px solid rgba(121, 0, 7, 0.7);
+    border-bottom: 5px solid rgba(121, 0, 7, 0.7);
+    border-left: 5px solid transparent;
+    z-index: 300;
+    left: 465px;
+    top: 135px;
+    rotate: 1.2deg;
+}
+
+.end-icon {
+    mix-blend-mode:exclusion;
+    padding-top: 10px;
+    width: 120px;
+    opacity: 70%;
+    z-index: 305;
+}
+
+.completed-icon {
+    mix-blend-mode: luminosity;
+    padding-top: 20px;
+    width: 140px;
+    opacity: 60%;
+    z-index: 305;
+}
+
+.legend-icon {
+    padding-top: 10px;
+    width: 150px;
+    opacity: 70%;
+    z-index: 305;
+    mix-blend-mode: exclusion;
+}
+
+.restart-input {
+    width: 35%;
+    margin-inline: 20px;
+}
+
+.ranking {
+    display: block;
+    position: absolute;
+    text-align: justify;
+    text-indent: 5px;
+    color: rgba(240, 248, 255, 0.8);
+    background-color: rgba(121, 0, 7, 0.8);
+    width: 350px;
+    padding: 0 12px 10px 30px;
+    margin: 0 0 20px 0;
+    font-family: 'Blender Pro';
+    font-size: 22px;
+    border-top: 15px solid  transparent;
+    border-right: 15px solid rgba(7, 7, 7, 0.95);
+    border-bottom: 15px solid rgba(7, 7, 7, 0.95);
+    border-left: 15px solid transparent;
+    z-index: 360;
+    left: 1360px;
+    top: 170px;
+    opacity: 0.9;
+}
+
+.ranking-afterlife {
+    width: 290px;
+    padding-right: 10px;
+    opacity: 0.75;
+}
