@@ -954,9 +954,6 @@ const playerDeath = () => {
 
         RestartCleaner();
         closeGameTab();
-
-      //  const playerStatusHub = document.getElementById("player-status");
-       // playerStatusHub.innerHTML = "";
 };
 
 
