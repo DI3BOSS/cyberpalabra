@@ -19,7 +19,6 @@
     src: url(https://www.cyberpunk.net/fonts/BlenderPro-Book.woff2) format('woff2')
 }
 
-
 @font-face {
     font-family: 'Computer Pixel';
     src: url(https://get.fontspace.co/webfont/mnL2/ZDg0NGY3OTY0YjI3NDg1ZDg0MGI4YzEwOGNjMmYwN2MudHRm/computer-pixel-7.woff) format('woff')
@@ -33,12 +32,11 @@ body {
     display: inline-block;
     margin: 0;
     padding: 0;
-    background-color: rgba(11, 10, 11, 0.90);
+    background-color:  rgba(11, 10, 11, 0.90);
     background-image: url(./media/netrunner-lair-bground.jpg);
     background-size: cover;
     background-repeat: repeat;
 }
-
 
 .inputs {
     display: grid;
@@ -51,7 +49,7 @@ body {
 
 .answer-input {
     font-family: 'Blender Pro';
-    font-size: 18px;
+    font-size: 22px;
     width: 307px;
     line-height: 32px;
     cursor: text;
@@ -160,7 +158,7 @@ button:hover {
 .letter-donut span{
     position: fixed;
     height: 40px;
-    color: white;
+    color: rgba(255, 255, 255, 1);
     font-size: 35px;
     width: 60px;
     text-align: center;
@@ -174,7 +172,7 @@ button:hover {
 }
 
 .letter-donut-active {
-    color: white;
+    color: rgba(255, 255, 255, 1);
     background-color: rgba(121, 0, 7, 0.8) !important;
 }
 
@@ -208,7 +206,6 @@ button:hover {
     margin: 0px 0 10px 0;
     font-family: 'Blender Pro';
 }
-
 
 .explanation {
     display: block;
@@ -276,6 +273,7 @@ button:hover {
     transition: all 100ms linear 100ms;
     text-align: center;
     height: 22px;
+    transition: all 100ms linear 100ms;
 }
 
 .player-name:hover {
@@ -298,6 +296,7 @@ button:hover {
     transition: all 100ms linear 100ms;
     text-align: center;
     height: 22px;
+    transition: all 100ms linear 100ms;
 }
 
 .pukka-player-name:hover {
@@ -338,6 +337,26 @@ div .questions-zone {
     z-index: 20;
 }
 
+.send-input {
+    display: block;
+    width: 307px;
+}
+
+.pass-question {
+    display: inline-block;
+    width: 120px;
+    margin-right: 15px;
+}
+
+.pass-question:hover {
+    background-color: rgba(36, 89, 132, 0.85);
+}
+
+.cancel-game {
+    display: inline-block;
+    width: 172px;
+}
+
 div .invade-terminal {
     color: rgba(240, 248, 255, 1);
     background-color:  rgba(11, 10, 11, 0.60);
@@ -372,7 +391,7 @@ div .daemon-terminal {
     rotate: 1.2deg;
     height: 380px;
     top: 205px;
-    right: -180px;
+    left: 1265px;
     mix-blend-mode:lighten;
     margin-top: 15px;
     border-top: 3px solid  rgba(141, 2, 9, 0.85);
@@ -382,7 +401,7 @@ div .daemon-terminal {
     opacity: 70%;
 }
 
-p.player-hub-top{
+p.player-hub-top {
     font-family: 'Blender Pro';
     position: fixed;
     display: inline-block;
@@ -392,7 +411,7 @@ p.player-hub-top{
     padding-right: 30px;
     width: 430px;
     top: 163px;
-    right: -5px;
+    left: 1315px;
     rotate: -4.4deg;
     color: rgba(240, 248, 255, 0.95);
     text-shadow: rgba(70, 2, 2, 0.59) 3px 0 3px;
@@ -401,7 +420,7 @@ p.player-hub-top{
     transform: perspective(2000px) scaleX(1) rotateY(45deg) skewX(-10px);
 }
 
-p.player-hub-bottom{
+p.player-hub-bottom {
     font-family: 'Blender Pro';
     position: fixed;
     display: inline-block;
@@ -411,7 +430,7 @@ p.player-hub-bottom{
     padding-right: 30px;
     width: 430px;
     top: 501px;
-    right: -5px;
+    left: 1315px;
     rotate: 6deg;
     color: rgba(240, 248, 255, 0.95);
     text-shadow: rgba(70, 2, 2, 0.59) 3px 0 3px;
