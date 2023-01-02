@@ -373,13 +373,11 @@ const ranking = () => {
     pointsRanking.sort((a, b) => (b['moneyEarned'] - a['moneyEarned']));
 
     const ranking = document.getElementById("game-ranking");
-
     ranking.innerHTML += '<ol id="ranking" class="ranking">'
     + '<img class="ranking-afterlife" src="./media/afterlife-ranking.png">'
     + '</ol>'
 
     const rankingGenerator = document.getElementById("ranking");
-
     for (let i = 0; i < 10; i++) {
         rankingGenerator.innerHTML += '<li> ♟ ' + pointsRanking[i].player + ', con E$' +  pointsRanking[i].moneyEarned + '</li>'
     };
@@ -390,8 +388,8 @@ const playerHealthPointsLeft = () => {
 
     const maximumPlayerTime = gameTime;
     const healthPointPerSecond = maximumPlayerTime / playerData.MaximumHealth;
-    const healthLeft = document.getElementById("health");
 
+    const healthLeft = document.getElementById("health");
     healthLeft.innerHTML = "";
     healthLeft.innerHTML += playerData.health;
 
@@ -400,7 +398,6 @@ const playerHealthPointsLeft = () => {
     if (playerData.health === 0) {
 
         playerDeathSound.play();
-
         setTimeout( () => {   
             playerDeath();
         }, 300);
@@ -408,9 +405,7 @@ const playerHealthPointsLeft = () => {
     } else {
 
         playerData.health -= 1;
-        
         setTimeout("playerHealthPointsLeft()", healthPointPerSecond * 1000);
-
         if (heartBeatSound.volume < 1) {
             heartBeatSound.volume += 0.01;
             heartBeatSound.playbackRate += 0.005;
@@ -428,7 +423,7 @@ const playerEarnedMoneyAndPoints = () => {
     const playerMoney = document.getElementById("eddies");
     playerMoney.innerHTML = "";
     playerMoney.innerHTML += playerData.money
-}
+};
 
 
 const donutMaker = () => {
@@ -436,18 +431,16 @@ const donutMaker = () => {
     const letterAngle = index => index * (360 / letterDonut.length);
 
     const gameScenario = document.getElementById("game-scenario");
-        const scenarioWidth = window.getComputedStyle(gameScenario);
-        const scenarioWidthValue = scenarioWidth.getPropertyValue('width');
+    const scenarioWidth = window.getComputedStyle(gameScenario);
+    const scenarioWidthValue = scenarioWidth.getPropertyValue('width');
 
     const donutRadius = scenarioWidthValue.slice(0, scenarioWidthValue.length -2) / 2;
 
     // X = Sin(angle)R
     const xAxisPosition = angle => (Math.sin(letterAngle(angle) * (Math.PI / 180)) * donutRadius);
-
     // Y = √ R² - X² (de despejar la Y en la ecuación canónica de la circumferencia -> X² + Y² = R²)
     const yAxisPosition = (angle) => {
-
-        //equivalente a <90 *-1, <180 y <270 *1 y <360*-1, para distribuir los puntos por el plano cartesiano
+    //equivalente a <90 *-1, <180 y <270 *1 y <360*-1, para distribuir las letras en los cuatro cuadrantes del plano cartesiano.
         if (letterAngle(angle) < 90 || letterAngle(angle) > 270) { 
             return  Math.sqrt(Math.pow(donutRadius, 2) - Math.pow(xAxisPosition(angle), 2)) * -1;
         } else {
@@ -456,7 +449,6 @@ const donutMaker = () => {
     };
 
     const donutPlace = document.getElementById("letter-donut");
-
     for(let i = 0; i < letterDonut.length; i++) {
         donutPlace.innerHTML += '<span id="letter' + letterDonut[i] + '" style="margin-left:' + xAxisPosition(i).toFixed(0) 
         + 'px; margin-top: ' + yAxisPosition(i).toFixed(0) + 'px;">' + letterDonut[i] + '</span>';
@@ -467,17 +459,15 @@ const donutMaker = () => {
 const screenWidthAdapter = () => {
 
     switch (screen.width) {
-
+        case 1739 : document.body.style.zoom = "100%";
+            break;
         case 1740 : document.body.style.zoom = "100%";
             break;
-
         case 1450 : document.body.style.zoom = "82%";
             break;
-
         case 1238 : document.body.style.zoom = "70%";
             break;
-
-        default : alert(`Su ventana mide: ${screen.width} x ${screen.height}. Este juego está pensado para monitores Full HD. Por favor, ajuste manualemente el zoom para asegurarse de ver cómodamente todo el contenido de la pantalla de juego. ¡Gracias!`) 
+        default : alert(`Su ventana mide ${screen.width} x ${screen.height}. Este juego está pensado para monitores Full HD. Por favor, ajuste manualemente el zoom para asegurarse de ver cómodamente todo el contenido de la pantalla de juego. ¡Gracias!`) 
             break;
     };
 }
@@ -512,16 +502,15 @@ const runGameAfterExplanation = () => {
             pukkaName.className = "";
             pukkaName.innerHTML = "";
             
-                pukkaName.className = "pukka-name";
-                pukkaName.innerHTML += playerName.value === 0 || (playerName.value * 1) + 1 > 1 ? 
-                    '<p> No pienso llamarte con un número. ¡Esto no es un puto equipo de fútbol! Déjate V o <b> ponte un apodo de verdad</b>...</p>':
-                    '<p> ¿Te llamo silbando? entonces ¡¿qué es esa mierda de dejar el nombre vacío?! Déjate V o <b>ponte un nombre como Dios manda</b>...</p>';
-                playerName.className = "pukka-player-name";
+            pukkaName.className = "pukka-name";
+            pukkaName.innerHTML += playerName.value === 0 || (playerName.value * 1) + 1 > 1 ? 
+                '<p> No pienso llamarte con un número. ¡Esto no es un puto equipo de fútbol! Déjate V o <b> ponte un apodo de verdad</b>...</p>':
+                '<p> ¿Te llamo silbando? entonces ¡¿qué es esa mierda de dejar el nombre vacío?! Déjate V o <b>ponte un nombre como Dios manda</b>...</p>';
+            playerName.className = "pukka-player-name";
 
         } else {
 
             playerData.name = playerName.value;
-
             runGame.disabled = true;
 
             TerminalConnectionSound.play();
@@ -567,8 +556,8 @@ const startGame = (counterId) => {
 
     gameStarter.addEventListener("click", (event) => {
         event.preventDefault();
+        
         gameMusic.play()
-
         buttonConfirmSound.play();
 
         gameStarter.disabled = true;
@@ -627,16 +616,27 @@ const playerInputs = (id) => {
     inputs.innerHTML = '<form class="player-feedback">'
     + '<input class="answer-input" id="answer-input" type="text" value="(ツ)_/¯ lúcete aquí...">'
     + '<div>'
-    + '<button class="send-input" id="send-input">⛏ romper hielo</button>'
-    + '<button class="cancel-game" id="cancel-game">✄ desconectar</button>'
+    + '<button class="send-input" id="send-input">⛏ Romper Hielo</button>'
+    + '<button class="pass-question" id="pass-question">➥ Pasar</button>'
+    + '<button class="cancel-game" id="cancel-game">✄ Desconectar</button>'
     + '</div>'
     + '</form>'
-    
+
     answerInputEvaluator(id);
 };
 
 
 const answerInputEvaluator = (id) => {
+
+        const playerAnswer = document.getElementById("answer-input");
+
+    playerAnswer.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        buttonConfirmSound.play(); 
+
+        playerAnswer.value = "";
+    });
 
     const playerCancel = document.getElementById("cancel-game");
 
@@ -650,14 +650,34 @@ const answerInputEvaluator = (id) => {
         playerDisconnected();
     });
 
-    const playerAnswer = document.getElementById("answer-input");
+    const playerPass = document.getElementById("pass-question");
 
-    playerAnswer.addEventListener("click", (event) => {
+    playerPass.addEventListener("click", (event) => {
         event.preventDefault();
+
+        playerPass.disabled = true;
 
         buttonConfirmSound.play(); 
 
-        playerAnswer.value = "";
+        questionPacks[id].status = '🔵';
+        document.getElementById(`letter${questionPacks[id].letter.toUpperCase()}`).className = "letter-donut-avoided";
+
+        const currentQuestionDisplayReset = document.getElementById("current-question");
+
+        setTimeout( () => {
+            currentQuestionDisplayReset.innerHTML = commentsToPassedAnswers(commentSelector(), id);
+            playerPassedSound.play();
+        }, 100);
+
+        setTimeout( () => {
+            if (questionIdCounter === alphabet.length -1 || passedPositionIndex === passedPositionIndexer.length -1) {
+                currentQuestionDisplayReset.innerHTML = "Ostras, nos van▒a d€sc█neT@r!▒"; 
+            } else {
+                currentQuestionDisplayReset.innerHTML = "¡Ojo, viene más hielo!";
+                gameQuestionSound.play();
+            };
+        }, 3500);
+        answerInputResetAndWinnerChecker(5500);
     });
     
     
@@ -679,8 +699,7 @@ const answerInputEvaluator = (id) => {
         } else if (questionPacks[id].status === questionPacks[id].answer[playerData.questionsIdForGame]) {
 
             questionPacks[id].status = '🟢';
-
-            document.getElementById("letter" + questionPacks[id].letter.toUpperCase()).className = "letter-donut-hit";
+            document.getElementById(`letter${questionPacks[id].letter.toUpperCase()}`).className = "letter-donut-hit";
 
             const currentQuestionDisplayReset = document.getElementById("current-question");
 
@@ -691,7 +710,6 @@ const answerInputEvaluator = (id) => {
 
             setTimeout( () => {
                 currentQuestionDisplayReset.innerHTML = commentsToGuessedAnswers(commentSelector());
-
                 playerEarnedMoneyAndPoints()
             }, 2500);
 
@@ -703,36 +721,12 @@ const answerInputEvaluator = (id) => {
                     gameQuestionSound.play();
                 };
             }, 5500);
-
-            setTimeout( () => {
- 
-                questionIdCounter++;
-
-                passedPositionIndex++;
-
-                if (!roundNumberCounter) {
-
-                    if (questionIdCounter === alphabet.length) {
-                        winnerChecker();
-                    } else {
-                        questionZoneReset(questionIdCounter);
-                    };
-
-                } else {
-
-                    if (passedPositionIndex === passedPositionIndexer.length) {
-                        winnerChecker();
-                    } else {
-                        questionZoneReset(passedPositionIndexer[passedPositionIndex])
-                    };
-                };
-            }, 7500);
+            answerInputResetAndWinnerChecker(7500);
 
         } else if (questionPacks[id].status === passKeyword[0] || questionPacks[id].status === passKeyword[1] || questionPacks[id].status === passKeyword[2]) {
 
             questionPacks[id].status = '🔵';
-
-            document.getElementById(`letter${questionPacks[id].letter.toUpperCase()}`).className ="letter-donut-avoided";
+            document.getElementById(`letter${questionPacks[id].letter.toUpperCase()}`).className = "letter-donut-avoided";
 
             const currentQuestionDisplayReset = document.getElementById("current-question");
 
@@ -749,47 +743,22 @@ const answerInputEvaluator = (id) => {
                     gameQuestionSound.play();
                 };
             }, 3500);
-
-            setTimeout( () => {
-                questionIdCounter++;
-
-                passedPositionIndex++;
-
-                if (!roundNumberCounter) {
-
-                    if (questionIdCounter === alphabet.length) {
-                        winnerChecker();
-                    } else {
-                        questionZoneReset(questionIdCounter);
-                    };
-
-                } else {
-
-                    if (passedPositionIndex === passedPositionIndexer.length) {
-                        winnerChecker();
-                    } else {
-                        questionZoneReset(passedPositionIndexer[passedPositionIndex]);
-                    };
-                };
-            }, 5500);
+            answerInputResetAndWinnerChecker(5500);
 
         } else {
 
             questionPacks[id].status = '🔴';
-
-            document.getElementById(`letter${questionPacks[id].letter.toUpperCase()}`).className ="letter-donut-failed";
+            document.getElementById(`letter${questionPacks[id].letter.toUpperCase()}`).className = "letter-donut-failed";
 
             const currentQuestionDisplayReset = document.getElementById("current-question");
 
             if (playerAnswer.value.toLowerCase() === "(ツ)_/¯ lúcete aquí..." || playerAnswer.value.toLowerCase() === "") {
-
                 setTimeout( () => {
                     playerFailedSound.play();
                     currentQuestionDisplayReset.innerHTML = `¡¿Por qué le das sin escribir?!. Era ${questionPacks[id].answer[playerData.questionsIdForGame]}`;
                 }, 100); 
 
             } else {
-
                 setTimeout( () => {
                     playerFailedSound.play();
                     currentQuestionDisplayReset.innerHTML = `¡No, era ${questionPacks[id].answer[playerData.questionsIdForGame]}!`;
@@ -808,30 +777,7 @@ const answerInputEvaluator = (id) => {
                     gameQuestionSound.play();
                 };
             }, 6400);
-
-            setTimeout( () => {
-
-                questionIdCounter++;
-
-                passedPositionIndex++;
-
-                if (!roundNumberCounter) {
-
-                    if (questionIdCounter === alphabet.length) {
-                        winnerChecker();
-                    } else {
-                        questionZoneReset(questionIdCounter);
-                    };
-
-                } else {
-
-                    if (passedPositionIndex === passedPositionIndexer.length) {
-                        winnerChecker();
-                    } else {
-                        questionZoneReset(passedPositionIndexer[passedPositionIndex]);
-                    };
-                };
-            }, 8400);
+            answerInputResetAndWinnerChecker(8400);
         };
     });
 };
@@ -846,7 +792,6 @@ const questionZoneReset = (counterId) => {
     currentQuestion.innerHTML = "";
 
     if (playerData.health !== 0 || playerData.cancel){
-
         questionZone(counterId);
         playerInputs(counterId);
     };
@@ -872,19 +817,12 @@ const winnerChecker = () => {
          const allGuessed = (guessedStatus) => guessedStatus === 'guessed';
 
     if (playerData.health === 0) {
-
         playerDeath();
-
     } else if (guessedCheck.every(allGuessed)) {
-
         playerAfterlifeLegend();    
-        
     } else if (passedCheck.every(nonePassed)) {  
-
         playerCompletedTheGame();
-
     } else {
-
         otherRoundMenu();
     };
 };
@@ -916,15 +854,12 @@ const otherRoundMenu = () => {
         passedPositionIndex = 0;
 
         questionPacks.forEach(letter => {
-
             if (letter.status === '🔵') {
                 passedPositionIndexer.push(questionPacks.indexOf(letter))
             };
         });
     };
-
     passedQuestionFinder();
-
     startGame(passedPositionIndexer[passedPositionIndex]);
 };
 
@@ -950,10 +885,9 @@ const playerDeath = () => {
         + '<button class="restart-input" id="game-close"> ✗ ¡Que le den!</button></p>'
         + '</div>'
 
-        playerDeathEvent.play();
-
-        RestartCleaner();
-        closeGameTab();
+    playerDeathEvent.play();
+    RestartCleaner();
+    closeGameTab();
 };
 
 
@@ -984,7 +918,6 @@ const playerDisconnected = () => {
 
     setTimeout( () => {
         ranking();
-           
     }, 100);
 };
 
@@ -1016,7 +949,6 @@ const playerCompletedTheGame = () => {
 
     setTimeout( () => {
         ranking();
-           
     }, 100);
 };
 
@@ -1033,7 +965,6 @@ const playerAfterlifeLegend = () => {
     playerLegendEvent.play();
 
     const FixerBonusForTheLegend = ~~(playerData.money * 0.2).toFixed(0);
-
     const afterlifeLegendEvent = document.getElementById("game-events");
 
     afterlifeLegendEvent.innerHTML += '<div class="end-note">'
@@ -1053,12 +984,10 @@ const playerAfterlifeLegend = () => {
     setTimeout( () => {
         
     playerData.money += FixerBonusForTheLegend;
-           
     }, 3000);
 
     setTimeout( () => {
-        ranking();
-           
+        ranking();   
     }, 3100);
 };
 
@@ -1082,7 +1011,7 @@ const RestartCleaner = () => {
             clearRanking.innerHTML = "";
 
         const playerStatusHub = document.getElementById("player-status");
-        playerStatusHub.innerHTML = "";
+            playerStatusHub.innerHTML = "";
 
         gameRestarter.disabled = true;
 
@@ -1107,6 +1036,7 @@ const RestartCleaner = () => {
         terminalLocked.innerHTML += 'TERMINAL LOCKED';
         
         gameMusic.volume = 0.25; 
+        heartBeatSound.volume = 0;
         TerminalConnectionSound.play();
 
         setTimeout( () => {  
@@ -1126,12 +1056,33 @@ const closeGameTab = () => {
         event.preventDefault();
 
         buttonCloseGameSound.play();
-
         setTimeout( () => {
            close()
         }, 150);
     });
 };
 
+
+const answerInputResetAndWinnerChecker = (delay) => {
+
+    setTimeout( () => {
+        questionIdCounter++;
+        passedPositionIndex++;
+
+        if (!roundNumberCounter) {
+            if (questionIdCounter === alphabet.length) {
+                winnerChecker();
+            } else {
+                questionZoneReset(questionIdCounter);
+            };
+        } else {
+            if (passedPositionIndex === passedPositionIndexer.length) {
+                winnerChecker();
+            } else {
+                questionZoneReset(passedPositionIndexer[passedPositionIndex])
+            };
+        };
+    }, delay);
+};
 
 runGameAfterExplanation();
